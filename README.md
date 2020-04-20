@@ -14,6 +14,7 @@ JAVA Assignment consists of the following:
 3. Screenshot of the final created resume (it will take that name which the user will enter as the name in the resume builder GUI)
 4.The Screenshot of the screen as we click the GENERATE RESUME button.
 
+
 Submitted By: Vartika Chaturvedi 
 Roll NO.: 181210056
 
