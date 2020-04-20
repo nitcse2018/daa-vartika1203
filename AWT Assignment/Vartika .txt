@@ -1,0 +1,59 @@
+                                              RESUME
+
+PERSONAL INFORMATION
+
+Enter your first name:Vartika 
+Enter your last name:Chaturvedi
+Select your gender:Female
+Enter your email-id:181210056@nitdelhi.ac.in
+Enter your phone number:9319610906
+Enter your address:Agra, Uttar Pradesh
+
+
+QUALIFICATIONS
+
+College name:NIT Delhi
+Graduation year:2022
+CGPA:7.77
+School Name(XII):Army Public School
+Passing Year:2018
+Percentage:92.4%
+School Name(X):St. Joseph's Convent
+Passing Year:2016
+Percentage:95
+
+TECHICAL SKILLS AND INTERESTS
+
+➤ Technical Skill:HTML
+➤ Technical Skill:CSS
+➤ Technical Skill:JavaScript
+➤ Interests:Web Designing
+➤ Interests:C++
+➤ Interests:MySQL
+
+WORK SAMPLES AND PROJECTS
+
+LinkedIn Profile:https://www.linkedin.com/in/vartika-chaturvedi-89baa5187
+GitHub Profile:https://github.com/vartika1203
+
+PROJECT :1
+
+Project Title:...
+Project Description:...
+
+PROJECT :2
+
+Project Title:.....
+Project Description:.....
+
+EXTRA-CURRICULAR ACTIVITIES
+
+➤ Activity 1:Gold Medalist in the International Olympiad of Maths(Level-II)
+➤ Activity 2:Participated in Codathon-2020 organized by NIT Bhopal
+➤ Activity 3:Hosted several events in  Saptrang- The Annual Cultural Fest of NIT Delhi 
+
+POSITIONS OF RESPONSIBILITY
+
+ᐳ Society:The Training And Placement Cell
+ᐳ Position Of Responsibility:Coordinator
+ᐳ Work Description:Managing the Placement drives, inviting the companies to visit our campus for Placement drives 
