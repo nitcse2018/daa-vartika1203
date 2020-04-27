@@ -1,189 +1,71 @@
-#include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
-
-struct node
+#include <iostream>
+#include <list>
+ 
+using namespace std;
+ 
+class Graph
 {
-	int vertex;
-	struct node *next;
+    int numVertices;
+    list *adjLists;
+    bool* visited;
+public:
+    Graph(int vertices);  
+    void addEdge(int src, int dest); 
+    void BFS(int startVertex);
 };
-struct graph
+ 
+Graph::Graph(int vertices)
 {
-	int v,e;
-	struct node **adj;
-};
-
-int bs(int a[], int n, int item)
-{
-	if(n == -1)
-		return -1;
-	int i;
-	for(i=0;i<=n;i++)
-		if(item == a[i])
-			return 10;
-			
-	return -1;
+    numVertices = vertices;
+    adjLists = new list[vertices];
 }
-
-int count = -1;
-int initial = 0;
-
-void DFS(struct graph *g, int dfs[], int start)
+ 
+void Graph::addEdge(int src, int dest)
 {
-	struct node *p = g->adj[start];	
-	while(p!=NULL)
-	{
-		if( bs(dfs, count, p->vertex) == -1 )
-			dfs[++count] = p->vertex;
-		p = p->next;
-	}
-	
-	while(initial <= count)
-	{
-		initial = initial+1;
-		if(initial <= count)
-			DFS(g, dfs, dfs[initial]);
-	}
+    adjLists[src].push_back(dest);
+    adjLists[dest].push_back(src);
 }
-
-//************************************************************************************************************
-//                                 MAIN  FUNCTION
-//************************************************************************************************************
-
-main()
+ 
+void Graph::BFS(int startVertex)
 {
-	struct graph *g = (struct graph *)malloc( sizeof(struct graph));
-	
-	printf("\n  How many vertices in graph : ");
-	scanf("%d",&g->v);
-	printf("\n  How many edges in graph : ");
-	scanf("%d",&g->e);
-	
-	g->adj = (struct node **)malloc(g->v * sizeof(struct node));
-	
-	int i;
-	for(i=0; i< g->v;i++)
-	{
-		struct node *temp = (struct node *)malloc(sizeof(struct node));
-		temp->vertex = i;
-		temp->next = NULL;
-		g->adj[i] = temp;
-	}
-	
-	for(i=0; i< g->e;i++)
-	{
-		int u,v;
-		printf("\n\n	Edge %d :  ",i+1);
-			printf("\n		Vertex 1 : ");
-			scanf("%d",&u);
-			printf("\n		Vertex 2 : ");
-			scanf("%d",&v);
-		
-		struct node *temp = (struct node *)malloc(sizeof(struct node));
-		temp->vertex = v;
-		temp->next = NULL;
-		struct node *p = g->adj[u];
-		
-		if(p->next == NULL)
-			p->next = temp;
-		else
-		{
-			p = p->next;
-			if(p->vertex > temp->vertex)
-			{
-				temp->next = p;
-				g->adj[u]->next = temp;
-			}
-			else
-			{
-				while(p->next!=NULL && p->next->vertex < temp->vertex)
-					p = p->next;
-		
-				if(p->next == NULL)
-					p->next = temp;
-			
-				if(p->next->vertex > temp->vertex)
-				{
-					temp->next = p->next;
-					p->next = temp;
-				}
-			}
-		
-		}
-		
-/////////////////////////////////////////////////////////////////////////////////////
-		
-		struct node *temp1 = (struct node *)malloc(sizeof(struct node));
-		temp1->vertex = u;
-		temp1->next = NULL;
-		struct node *p1 = g->adj[v];
-		
-		if(p1->next == NULL)
-			p1->next = temp1;
-		else
-		{
-			p1 = p1->next;
-			if(p1->vertex > temp1->vertex)
-			{
-				temp1->next = p1;
-				g->adj[v]->next = temp1;
-			}
-			else
-			{
-				while(p1->next!=NULL && p1->next->vertex < temp1->vertex)
-					p1 = p1->next;
-			
-				if(p1->next == NULL)
-					p1->next = temp1;	
-				if(p1->next->vertex > temp1->vertex)
-				{
-					temp1->next = p1->next;
-					p1->next = temp1;
-				}
-			}
-		}
-		
-	}
-	
-	printf("\n\n  Let us see our graph...");
-	getch();
-	
-	for(i=0;i<g->v;i++)
-	{
-		printf("\n\n	");
-		struct node *temp = g->adj[i];
-		while(temp!=NULL)
-		{
-			printf("%d --> ",temp->vertex);
-			temp = temp->next;
-		}
-	}
-	
-	while(1)
-	{
-		count = -1;
-		initial = 0;
-		printf("\n\n");
-		int start;
-		printf("\n\n  Starting node for DFS : ");
-		scanf("%d",&start);
-		printf("\n\n  The BFS starting from %d : ",start);
-		
-		int v = g->v;	
-		int dfs_nodes[v];
-		for(i=0;i<v;i++)
-			dfs_nodes[i] = -1;
-		
-		DFS(g, dfs_nodes, start);
-		printf("\n\n");
-	
-		for(i=0;i<v;i++)
-			printf("	%d",dfs_nodes[i]);
-			
-		int x;
-		printf("\n\n More : ");
-		scanf("%d",&x);
-		if(x==0)
-			break;
-	}
+    visited = new bool[numVertices];
+    for(int i = 0; i < numVertices; i++)
+        visited[i] = false;
+ 
+    list queue;
+ 
+    visited[startVertex] = true;
+    queue.push_back(startVertex);
+ 
+    list::iterator i;
+ 
+    while(!queue.empty())
+    {
+        int currVertex = queue.front();
+        cout << "Visited " << currVertex << " ";
+        queue.pop_front();
+ 
+        for(i = adjLists[currVertex].begin(); i != adjLists[currVertex].end(); ++i)
+        {
+            int adjVertex = *i;
+            if(!visited[adjVertex])
+            {
+
+                visited[adjVertex] = true;
+                queue.push_back(adjVertex);
+            }
+        }
+    }
+}
+ 
+int main()
+{
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 3);
+   
+    g.BFS(2);
+ 
+    return 0;
 }
