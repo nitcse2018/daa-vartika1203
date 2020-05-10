@@ -1,0 +1,2 @@
+This is the TASK 1
+In this task, we have to read the input from a particular file. In this case, this is the input file. The contents of this file will hence be written onto a output file using Char Stream.
